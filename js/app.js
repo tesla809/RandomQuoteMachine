@@ -1,16 +1,25 @@
 //app.js
 
+// to do:
+/*
+-Add text to div
+-Add new font to div
+-Add function to scroll thru each individual letters randomly 
+-Add Loading three dots(...), that each goes up then down in a wave
+-apply random individual letter scroll function to output div while loading takes place
+	-doubles in size, the shrinks to 0
+	-shows message in the same way. 
+
+-Later on, add twitter api to get info from 
+-Later on, add google translate api to translate quote
+*/
+
 
 //create random text generation in quote area
-
     var $description  = "<div class='jumbotron description'>"
     	$description +=	"<div class='description'><p>Here are some random quotes that I have stolen from Twitter.";
         $description += "</br>I hope you enjoy them as much as I enjoyed stealing them.</p></div>";
         $description += "</div>";
-
-
-
-
 
 
 // create language object constructor function-
@@ -60,10 +69,10 @@ function randomText(start, end){
     return output;
 }
 
-// console.log(randomText(randomLanguage().start, randomLanguage().end));
+var outputRandomLang = randomText(randomLanguage().start, randomLanguage().end);
 
 
 $(document).ready(function(){
-	$(".random-cool-text").text("<p>Hello</p>");
+	$(".random-language").text(outputRandomLang);
 
 });
