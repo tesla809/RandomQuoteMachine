@@ -32,9 +32,8 @@ body {
              transform: translate(-50%, -50%);;
 }
 
-.button-quote {
-  margin-top: 5%;
-  
+.random-language {
+  font-size: 2em;
 }
 
 .quote-space {
