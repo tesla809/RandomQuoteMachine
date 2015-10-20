@@ -1,3 +1,7 @@
+body {
+  background-color: rgb(235,66,62);
+}
+
 .header {
   text-align: center;
   font-size: 3em;
@@ -18,12 +22,23 @@
           border-radius: 8px;
 }
 
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: -webkit-transform: translate(-50%, -50%);
+             -ms-transform: translate(-50%, -50%);
+             transform: translate(-50%, -50%);;
+}
+
 .button-quote {
+  margin-top: 5%;
   
 }
 
 .quote-space {
-  margin: 5% 10% 5% 10%;
+  margin: 35% 10% 5% 10%;
   text-align: center;
   color: red;
 }
