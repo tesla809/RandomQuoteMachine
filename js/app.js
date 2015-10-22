@@ -5,6 +5,7 @@
 -Add text to div
 -Add new font to div
 -Add function to scroll thru each individual letters randomly 
+	-if not a space, must be underlined
 -Add Loading three dots(...), that each goes up then down in a wave
 -apply random individual letter scroll function to output div while loading takes place
 	-doubles in size, the shrinks to 0
