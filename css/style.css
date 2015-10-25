@@ -35,7 +35,9 @@ body {
 .random-language {
   font-size: 2em;
   color: white;
-  font-family: 'retro-computer', times
+  font-family: 'retro-computer', times;
+  border-bottom: 3px solid white;
+  padding-bottom: 3px;
 }
 
 .quote-space {
