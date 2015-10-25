@@ -17,10 +17,8 @@
 
 $(document).ready(function(){
     //create random text generation in quote area
-    var $description  = "<div class='jumbotron description'>"
-    	$description +=	"<div class='description'><p>Here are some random quotes that I have stolen from Twitter.";
-        $description += "</br>I hope you enjoy them as much as I enjoyed stealing them.</p></div>";
-        $description += "</div>";
+    var randomTitle = "Random Language Generator";
+    $(".random-language").text(randomTitle);
 
 
     // create language object constructor function-
@@ -52,8 +50,8 @@ $(document).ready(function(){
         console.log("randomPickStart: " + randomPickStart,"randomPickEnd: " + randomPickEnd);
         
         return {
-            start: languageArray[0].startLang,
-            end: languageArray[0].endLang  
+            startLang: languageArray[0].startLang,
+            endLang: languageArray[0].endLang  
         };
         
     }
@@ -62,20 +60,38 @@ $(document).ready(function(){
     // allow randomText to accept language-
     function randomText(start, end){
         var output = "";
-        var randomNumberOfLetters = Math.floor(Math.random() * 10);
+        // keep length same size as title?
+        //var randomNumberOfLetters = Math.floor(Math.random() * 10);
         
-        for(var i = 0; i < randomNumberOfLetters; i++){
+        for(var i = 0; i < randomTitle.length; i++){
             var text = String.fromCharCode(start + Math.random() * (end-start+1));
             output += text;
         }
         return output;
     }
 
-    var outputRandomLang = randomText(randomLanguage().start, randomLanguage().end);
+   var randomIntervalSet;
 
-    // chnages random language every second.
-    setInterval(function(){
-        $(".random-language").text(randomText(randomLanguage().start, randomLanguage().end));
-    }, 1000);
+
+    function startCycle(){ 
+        randomIntervalSet = setInterval(function(){
+            $(".random-language").text(randomText(randomLanguage().startLang, randomLanguage().endLang))
+        }, 500);
+    }
+
+    function endCycle(){
+        clearInterval(randomIntervalSet);
+    }
+
+    
+
+    // changes random text every second.
+    $(".random-language").mouseenter(function(){
+        startCycle();
+    }).mouseleave(function(){
+        endCycle();
+        $(".random-language").text(randomTitle);
+    });
+
 
 });
