@@ -60,6 +60,7 @@ $(document).ready(function(){
     // allow randomText to accept language-
     function randomText(start, end){
         var output = "";
+        
         // keep length same size as title?
         //var randomNumberOfLetters = Math.floor(Math.random() * 10);
         
@@ -70,7 +71,7 @@ $(document).ready(function(){
         return output;
     }
 
-   var randomIntervalSet;
+    var randomIntervalSet;
 
 
     function startCycle(){ 
@@ -83,8 +84,6 @@ $(document).ready(function(){
         clearInterval(randomIntervalSet);
     }
 
-    
-
     // changes random text every second.
     $(".random-language").mouseenter(function(){
         startCycle();
@@ -92,6 +91,5 @@ $(document).ready(function(){
         endCycle();
         $(".random-language").text(randomTitle);
     });
-
 
 });
