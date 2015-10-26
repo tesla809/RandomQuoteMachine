@@ -63,20 +63,25 @@ $(document).ready(function(){
         return array;
     }
 
-    // randomText called from array of language options-
-    // allow randomText to accept language-
-    function randomText(start, end){
-        var output = "";
+    // changes leter to random string
+    function randomText(starter, ender, array){
+        var randomTitleChanged = "";
+        var arrayOriginal  = array;
+        // get random postion of element
+        var jumpArrayPosition = Math.floor(Math.random() * array.length);
         
-        for(var i = 0; i < randomTitle.length; i++){
-            var text = String.fromCharCode(start + Math.random() * (end-start+1));
-            output += text;
-        }
-        return output;
+        // generate random character
+        var text = String.fromCharCode(starter + Math.random() * (ender-starter+1));
+        
+        // assign random character to random position
+        arrayOriginal[jumpArrayPosition] = text;
+        
+        randomTitleChanged = arrayOriginal.join('');
+        
+        return randomTitleChanged;
     }
 
-
-
+    var titleArray = toArray(randomTitle);
 
 
     // needs to in outer scope to work
@@ -84,8 +89,8 @@ $(document).ready(function(){
 
     function startCycle(){ 
         randomIntervalSet = setInterval(function(){
-            $(".random-language").text(randomText(randomLanguage().startLang, randomLanguage().endLang))
-        }, 500);
+            $(".random-language").text(randomText(randomLanguage().startLang, randomLanguage().endLang, titleArray))
+        }, 10);
     }
 
     function endCycle(){
