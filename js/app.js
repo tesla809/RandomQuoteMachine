@@ -2,8 +2,8 @@
 
 // to do:
 /*
--Add text to div
--Add new font to div
+-Add text to div *
+-Add new font to div *
 -Add function to scroll thru each individual letters randomly 
 	-if not a space, must be underlined
 -Add Loading three dots(...), that each goes up then down in a wave
@@ -17,7 +17,7 @@
 
 $(document).ready(function(){
     //create random text generation in quote area
-    var randomTitle = "Random Language Generator";
+    var randomTitle = "Random Quote Generator";
     $(".random-language").text(randomTitle);
 
 
@@ -33,10 +33,11 @@ $(document).ready(function(){
         var languageArray = [];
 
         // add language with ranges
+        var latin = new Language(0x0020, 0x007E, "latin");
         var arabic = new Language(0x060C,0x06FE,"arabic");
         var thai = new Language(0x0E01, 0x0E5B, "thai");
         var korean = new Language(0x1100, 0x11F9, "korean");
-        var latin = new Language(0x0020, 0x007E, "latin");
+
         
         languageArray.push(latin);
         languageArray.push(arabic);
@@ -56,13 +57,16 @@ $(document).ready(function(){
         
     }
 
+    // splits text string
+    function toArray(string){
+        var array = string.split("");
+        return array;
+    }
+
     // randomText called from array of language options-
     // allow randomText to accept language-
     function randomText(start, end){
         var output = "";
-        
-        // keep length same size as title?
-        //var randomNumberOfLetters = Math.floor(Math.random() * 10);
         
         for(var i = 0; i < randomTitle.length; i++){
             var text = String.fromCharCode(start + Math.random() * (end-start+1));
@@ -71,8 +75,12 @@ $(document).ready(function(){
         return output;
     }
 
-    var randomIntervalSet;
 
+
+
+
+    // needs to in outer scope to work
+    var randomIntervalSet;
 
     function startCycle(){ 
         randomIntervalSet = setInterval(function(){
