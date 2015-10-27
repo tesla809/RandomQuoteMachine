@@ -137,6 +137,7 @@ $(document).ready(function(){
     // changes random text every second.
     $(".random-language").mouseenter(function(){
         startCycle();
+        endCycleBackToOriginal();
     }).mouseleave(function(){
         endCycle();
         backToOriginal();
