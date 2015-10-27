@@ -47,6 +47,9 @@ html, body {
   background-color: rgb(111,111,111);
 
   display: fixed;
+
+  max-width: 250px;
+  word-wrap:break-word;
 }
 
 .quote-space {
