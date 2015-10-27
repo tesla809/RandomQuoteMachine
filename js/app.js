@@ -5,12 +5,11 @@
 -Add text to div *
 -Add new font to div *
 -Add function to scroll thru each individual letters randomly 
-	-if not a space, must be underlined
+    -if not a space, must be underlined
 -Add Loading three dots(...), that each goes up then down in a wave
 -apply random individual letter scroll function to output div while loading takes place
-	-doubles in size, the shrinks to 0
-	-shows message in the same way. 
-
+    -doubles in size, the shrinks to 0
+    -shows message in the same way. 
 -Later on, add twitter api to get info from 
 -Later on, add google translate api to translate quote
 */
@@ -88,8 +87,6 @@ $(document).ready(function(){
     }
 
     var titleArray = toArray(randomTitle);
-
-    var exitRandomText = $(".random-language").text(randomText(randomLanguage().startLang, randomLanguage().endLang, titleArray));
 
 
     // needs to in outer scope to work
