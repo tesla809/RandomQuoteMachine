@@ -18,8 +18,6 @@ $(document).ready(function(){
     //create random text generation in quote area
     var randomTitle = "Random Quote Generator";
     var randomTitleChanged = "";
-    // holds current random string
-    var randomBackToTitle  = "";
 
     //Set to Title;
     $(".random-language").text(randomTitle);
@@ -110,7 +108,6 @@ $(document).ready(function(){
 
     // needs to be in outer scope to work
     var randomIntervalSet;
-    var toOriginalIntervalSet;
 
     function startCycle(){ 
         randomIntervalSet = setInterval(function(){
@@ -118,33 +115,20 @@ $(document).ready(function(){
         }, 100);
     }
 
-    function startCycleBackToOriginal(){ 
-        toOriginalIntervalSet = setInterval(function(){
-            $(".random-language").text(returnToTitle(randomBackToTitle))
-        }, 100);
-    }
-
     function endCycle(){
         clearInterval(randomIntervalSet);
     }
 
-    function endCycleBackToOriginal(){
-        clearInterval(toOriginalIntervalSet);
-    }
+
 
     // changes random text every second.
     $(".random-language").mouseenter(function(){
         startCycle();
-        randomBackToTitle = $(".random-language").text();
     }).mouseleave(function(){
         endCycle();
 
-        // added? function to re code info, each random letter turns to orginal letter.
-        startCycleBackToOriginal();
-        if(randomBackToTitle === randomTitle){
-            endCycleBackToOriginal();
-        }
-        // $(".random-language").text(randomTitle);
+        // added? function to re code info, each random letter turns to orginal letter
+        $(".random-language").text(randomTitle);
     });
 
     //
