@@ -18,6 +18,9 @@ $(document).ready(function(){
     //create random text generation in quote area
     var randomTitle = "Random Quote Generator";
     var randomTitleChanged = "";
+    
+    // changes back to title;
+    var randomBackToTitle;
 
     //Set to Title;
     $(".random-language").text(randomTitle);
@@ -108,15 +111,29 @@ $(document).ready(function(){
 
     // needs to be in outer scope to work
     var randomIntervalSet;
+    var backToOriginalInterval;
 
     function startCycle(){ 
         randomIntervalSet = setInterval(function(){
-            $(".random-language").text(randomText(randomLanguage().startLang, randomLanguage().endLang, titleArray))
+            $(".random-language").text(randomText(randomLanguage().startLang, randomLanguage().endLang, titleArray));
+
+            // get the value on every call back here.
+            randomBackToTitle = $(".random-language").text();
         }, 100);
     }
 
     function endCycle(){
         clearInterval(randomIntervalSet);
+    }
+
+    function backToOriginal(){
+        backToOriginalInterval = setInterval(function(){
+            returnToTitle(randomBackToTitle);
+        }, 100);
+    }
+
+    function endCycleBackToOriginal(){
+        clearInterval(backToOriginalInterval);
     }
 
 
@@ -127,10 +144,19 @@ $(document).ready(function(){
     }).mouseleave(function(){
         endCycle();
 
+        // replace value here to test if it works on leaving
+        $(".random-language").text("This is: " + randomBackToTitle);
+
         // added? function to re code info, each random letter turns to orginal letter
-        $(".random-language").text(randomTitle);
+        /* two problems
+            not algorithm it works
+            1- updated text value of div on every call
+            2- getting setInterval to call algorithm 
+
+        */
+        //$(".random-language").text(randomTitle);
     });
 
-    //
+
 
 });
