@@ -17,10 +17,11 @@
 $(document).ready(function(){
     //create random text generation in quote area
     var randomTitle = "Random Quote Generator";
+
+    // changes back to title;
     var randomTitleChanged = "";
     
-    // changes back to title;
-    var randomBackToTitle;
+
 
     //Set to Title;
     $(".random-language").text(randomTitle);
@@ -94,15 +95,17 @@ $(document).ready(function(){
 
     function returnToTitle(stringInput){
         var stringOutput = "";
-        array = toArray(stringInput);
-        var titleArray = title.split('');
+        var array = toArray(stringInput);
+        var titleArray = randomTitle.split('');
         var jumpArrayPosition = randomPosition(array);
         
         array[jumpArrayPosition] = titleArray[jumpArrayPosition];
         stringOutput = array.join("");
         
-        // assigns output randomBackToTitle
-        randomBackToTitle = stringOutput;
+        // assigns output randomTitleChanged
+        randomTitleChanged = stringOutput;
+
+        return randomTitleChanged;
 
     }
 
@@ -116,9 +119,9 @@ $(document).ready(function(){
     function startCycle(){ 
         randomIntervalSet = setInterval(function(){
             $(".random-language").text(randomText(randomLanguage().startLang, randomLanguage().endLang, titleArray));
-
             // get the value on every call back here.
-            randomBackToTitle = $(".random-language").text();
+            // be aware of name conflict, might be benifical, not not be
+            randomTitleChanged = $(".random-language").text();
         }, 100);
     }
 
@@ -128,7 +131,7 @@ $(document).ready(function(){
 
     function backToOriginal(){
         backToOriginalInterval = setInterval(function(){
-            returnToTitle(randomBackToTitle);
+            $(".random-language").text(returnToTitle(randomTitleChanged));
         }, 100);
     }
 
@@ -137,23 +140,25 @@ $(document).ready(function(){
     }
 
 
-
     // changes random text every second.
     $(".random-language").mouseenter(function(){
         startCycle();
     }).mouseleave(function(){
         endCycle();
+        backToOriginal();
 
         // replace value here to test if it works on leaving
-        $(".random-language").text("This is: " + randomBackToTitle);
+        
+
 
         // added? function to re code info, each random letter turns to orginal letter
         /* two problems
             not algorithm it works
-            1- updated text value of div on every call
+            1- updated text value of div on every call *
             2- getting setInterval to call algorithm 
 
         */
+        // $(".random-language").text("This is: " + randomTitleChanged);
         //$(".random-language").text(randomTitle);
     });
 
