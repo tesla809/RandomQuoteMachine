@@ -1,35 +1,39 @@
-body {
+
+@media (max-width: 640px)  {
+  .random-language {
+    background-color: blue;
+  }
+
+  .quote-space {
+    background-color: blue;
+  }
+}
+
+html, body {
   background-color: rgb(235,66,62);
+  height: 50%;
+  width: 50%;
+  margin: 10% auto;
 }
 
-.header {
-  text-align: center;
-  font-size: 3em;
+.jumbotron {
+  background-color: rgba(192,192,, 0.8);
 }
 
-.description {
-  text-align: center;
-  margin: 0 20% 0 20%;
-  font-size: 1.5em;
+.box { 
+  height: 100%; 
+  display: inline-block;
+  margin-top: 5%;
+  margin-bottom: 2.5%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.btn-xlarge {
-  padding: 1em 1em;
-  font-size: 2.25em;
-  line-height: normal;
-  -webkit-border-radius: 8px;
-     -moz-border-radius: 8px;
-          border-radius: 8px;
-}
+.one { 
 
-.centered {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  /* bring your own prefixes */
-  transform: -webkit-transform: translate(-50%, -50%);
-             -ms-transform: translate(-50%, -50%);
-             transform: translate(-50%, -50%);;
+}
+.two { 
+
 }
 
 .random-language {
@@ -38,11 +42,15 @@ body {
   font-family: 'retro-computer', times;
   border-bottom: 3px solid white;
   padding-bottom: 3px;
+  background-color: rgb(111,111,111);
+  
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: -30%;
 }
 
 .quote-space {
-  margin: 35% 10% 5% 10%;
   text-align: center;
   color: red;
-  font-family: 'retro-computer', times
+  font-family: 'retro-computer', times;
 }
