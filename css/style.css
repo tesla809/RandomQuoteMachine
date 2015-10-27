@@ -16,10 +16,6 @@ html, body {
   margin: 10% auto;
 }
 
-.jumbotron {
-  background-color: rgba(192,192,, 0.8);
-}
-
 .box { 
   height: 100%; 
   display: inline-block;
@@ -31,9 +27,15 @@ html, body {
 
 .one { 
 
+
+
 }
 .two { 
 
+}
+
+.jumbotron {
+  background-color: rgba(192,192,, 0.8);
 }
 
 .random-language {
@@ -43,14 +45,13 @@ html, body {
   border-bottom: 3px solid white;
   padding-bottom: 3px;
   background-color: rgb(111,111,111);
-  
-  overflow: hidden;
-  white-space: nowrap;
-  margin-left: -30%;
+
+  display: fixed;
 }
 
 .quote-space {
   text-align: center;
   color: red;
   font-family: 'retro-computer', times;
+  display: fixed;
 }
