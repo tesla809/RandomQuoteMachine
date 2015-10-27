@@ -19,6 +19,10 @@ $(document).ready(function(){
     //create random text generation in quote area
     var randomTitle = "Random Quote Generator";
     var randomTitleChanged = "";
+    // holds current random string
+    var randomBackToTitle  = "";
+
+    //Set to Title;
     $(".random-language").text(randomTitle);
 
 
@@ -59,6 +63,7 @@ $(document).ready(function(){
     }
 
     // splits text string
+    // eliminate, its not useful, just use .split("") method
     function toArray(string){
         var array = string.split("");
         return array;
@@ -87,13 +92,28 @@ $(document).ready(function(){
         return randomTitleChanged;
     }
 
+    function returnToTitle(stringInput){
+        var stringOutput = "";
+        array = toArray(stringInput);
+        var titleArray = title.split('');
+        var jumpArrayPosition = randomPosition(array);
+        
+        array[jumpArrayPosition] = titleArray[jumpArrayPosition];
+        stringOutput = array.join("");
+        
+        // assigns output randomBackToTitle
+        randomBackToTitle = stringOutput;
+
+    }
+
     var titleArray = toArray(randomTitle);
 
     var exitRandomText = $(".random-language").text(randomText(randomLanguage().startLang, randomLanguage().endLang, titleArray));
 
 
-    // needs to in outer scope to work
+    // needs to be in outer scope to work
     var randomIntervalSet;
+    var toOriginalIntervalSet;
 
     function startCycle(){ 
         randomIntervalSet = setInterval(function(){
@@ -101,17 +121,33 @@ $(document).ready(function(){
         }, 100);
     }
 
+    function startCycleBackToOriginal(){ 
+        toOriginalIntervalSet = setInterval(function(){
+            $(".random-language").text(returnToTitle(randomBackToTitle))
+        }, 100);
+    }
+
     function endCycle(){
         clearInterval(randomIntervalSet);
+    }
+
+    function endCycleBackToOriginal(){
+        clearInterval(toOriginalIntervalSet);
     }
 
     // changes random text every second.
     $(".random-language").mouseenter(function(){
         startCycle();
+        randomBackToTitle = $(".random-language").text();
     }).mouseleave(function(){
         endCycle();
-        // add function to re code info, each random letter turns to orginal letter.
-        $(".random-language").text(randomTitle);
+
+        // added? function to re code info, each random letter turns to orginal letter.
+        startCycleBackToOriginal();
+        if(randomBackToTitle === randomTitle){
+            endCycleBackToOriginal();
+        }
+        // $(".random-language").text(randomTitle);
     });
 
 });
