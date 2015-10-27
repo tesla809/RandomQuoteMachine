@@ -45,11 +45,8 @@ html, body {
   border-bottom: 3px solid white;
   padding-bottom: 3px;
   background-color: rgb(111,111,111);
-
   display: fixed;
 
-  max-width: 250px;
-  word-wrap:break-word;
 }
 
 .quote-space {

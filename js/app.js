@@ -16,7 +16,7 @@
 
 $(document).ready(function(){
     //create random text generation in quote area
-    var randomTitle = "Random Quote Generator";
+    var randomTitle = "Say...What?";
     // changes back to title;
     var randomTitleChanged = "";
 
@@ -117,6 +117,12 @@ $(document).ready(function(){
             // be aware of name conflict, might be benifical, not not be
             randomTitleChanged = $(".random-language").text();
         }, 150);
+
+        /* if bigger than 11 characters
+            -break word
+            -place in new line
+            -no more than 3 lines
+        */
     }
 
     function endCycle(){
