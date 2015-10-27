@@ -18,6 +18,7 @@
 $(document).ready(function(){
     //create random text generation in quote area
     var randomTitle = "Random Quote Generator";
+    var randomTitleChanged = "";
     $(".random-language").text(randomTitle);
 
 
@@ -63,12 +64,17 @@ $(document).ready(function(){
         return array;
     }
 
+    function randomPosition(array){
+        var jumpArrayPosition = Math.floor(Math.random() * array.length);
+        
+        return jumpArrayPosition;
+    }
+
     // changes leter to random string
     function randomText(starter, ender, array){
-        var randomTitleChanged = "";
         var arrayOriginal  = array;
         // get random postion of element
-        var jumpArrayPosition = Math.floor(Math.random() * array.length);
+        var jumpArrayPosition = randomPosition(array);
         
         // generate random character
         var text = String.fromCharCode(starter + Math.random() * (ender-starter+1));
@@ -83,6 +89,8 @@ $(document).ready(function(){
 
     var titleArray = toArray(randomTitle);
 
+    var exitRandomText = $(".random-language").text(randomText(randomLanguage().startLang, randomLanguage().endLang, titleArray));
+
 
     // needs to in outer scope to work
     var randomIntervalSet;
@@ -90,7 +98,7 @@ $(document).ready(function(){
     function startCycle(){ 
         randomIntervalSet = setInterval(function(){
             $(".random-language").text(randomText(randomLanguage().startLang, randomLanguage().endLang, titleArray))
-        }, 10);
+        }, 100);
     }
 
     function endCycle(){
@@ -102,6 +110,7 @@ $(document).ready(function(){
         startCycle();
     }).mouseleave(function(){
         endCycle();
+        // add function to re code info, each random letter turns to orginal letter.
         $(".random-language").text(randomTitle);
     });
 
