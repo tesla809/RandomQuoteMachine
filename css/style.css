@@ -49,6 +49,7 @@ html, body {
   padding-bottom: 3px;
   background-color: rgb(111,111,111);
   display: fixed;
+  word-spacing: 0.1em;
 
 }
 
