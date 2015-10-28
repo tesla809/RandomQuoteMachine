@@ -145,7 +145,7 @@ $(document).ready(function(){
         var sampleQuotesArray = ["Hello There!","This is a test", "another one!", "The sweat the sweat sexy drips"];
         var randomQuotePosition = randomPosition(sampleQuotesArray);
 
-        var outputQuote = toString(sampleQuotesArray[randomQuotePosition]);
+        var outputQuote = sampleQuotesArray[randomQuotePosition];
 
         return outputQuote;
     }
@@ -160,11 +160,8 @@ $(document).ready(function(){
     });
 
     $(".random-language").on("click", function(){
-        $("quote-space").text("YO");
+        $(".add-Quote").text(quoteGenerator());
     });
 
-
-
-    
 
 });
