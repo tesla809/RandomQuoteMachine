@@ -16,7 +16,7 @@
 
 $(document).ready(function(){
     //create random text generation in quote area
-    var randomTitle = "Say...What?";
+    var randomTitle = "Say...What!";
     // changes back to title;
     var randomTitleChanged = "";
 
@@ -148,5 +148,9 @@ $(document).ready(function(){
         endCycle();
         backToOriginal();
     });
+
+    $(".random-language").click(function(){
+        $(".quote-space").text("It Works!");
+    })
 
 });
