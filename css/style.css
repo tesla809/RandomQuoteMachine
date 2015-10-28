@@ -18,27 +18,20 @@ html, body {
   margin: 10% auto;
 }
 
-.box { 
-  height: 100%; 
-  display: inline-block;
-  margin-top: 5%;
-  margin-bottom: 2.5%;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.one { 
-
-
-
-}
-.two { 
-
-}
 
 .jumbotron {
   background-color: rgba(192,192,, 0.8);
   min-width: 200px;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: -webkit-transform: translate(-50%, -50%);
+             -ms-transform: translate(-50%, -50%);
+             transform: translate(-50%, -50%);;
 }
 
 .random-language {
@@ -47,9 +40,12 @@ html, body {
   font-family: 'retro-computer', times;
   border-bottom: 3px solid white;
   padding-bottom: 3px;
-  background-color: rgb(111,111,111);
-  display: fixed;
   word-spacing: 0.1em;
+
+  margin-top: 20%;
+  margin-bottom: 5%;
+  font-size: 2.25em;
+  color: white;
 
 }
 
@@ -58,4 +54,9 @@ html, body {
   color: red;
   font-family: 'retro-computer', times;
   display: fixed;
+
+  margin: 5%;
+  text-align: center;
+  color: red;
 }
+
