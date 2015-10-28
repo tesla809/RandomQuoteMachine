@@ -1,11 +1,13 @@
 
-@media (max-width: 640px)  {
+@media (max-width: 1100px)  {
   .random-language {
     background-color: blue;
+    width: 250px;
   }
 
   .quote-space {
     background-color: blue;
+    width: 250px;
   }
 }
 
@@ -36,6 +38,7 @@ html, body {
 
 .jumbotron {
   background-color: rgba(192,192,, 0.8);
+  min-width: 200px;
 }
 
 .random-language {
