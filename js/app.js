@@ -139,6 +139,16 @@ $(document).ready(function(){
         clearInterval(backToOriginalInterval);
     }
 
+    function quoteGenerator(){
+        // have data in another file
+        // use this function though
+        var sampleQuotesArray = ["Hello There!","This is a test", "another one!", "The sweat the sweat sexy drips"];
+        var randomQuotePosition = randomPosition(sampleQuotesArray);
+
+        var outputQuote = toString(sampleQuotesArray[randomQuotePosition]);
+
+        return outputQuote;
+    }
 
     // changes random text every second.
     $(".random-language").mouseenter(function(){
@@ -148,5 +158,13 @@ $(document).ready(function(){
         endCycle();
         backToOriginal();
     });
+
+    $(".random-language").on("click", function(){
+        $("quote-space").text("YO");
+    });
+
+
+
+    
 
 });
