@@ -36,7 +36,7 @@ $(document).ready(function(){
         var languageArray = [];
 
         // add language with ranges
-        var latin = new Language(0x0020, 0x007E, "latin");
+        var latin = new Language(0x0021, 0x007E, "latin");
         var arabic = new Language(0x060C,0x06FE,"arabic");
         var thai = new Language(0x0E01, 0x0E5B, "thai");
         var korean = new Language(0x1100, 0x11F9, "korean");
@@ -80,7 +80,7 @@ $(document).ready(function(){
         
         // generate random character
         var text = String.fromCharCode(starter + Math.random() * (ender-starter+1));
-        
+
         // assign random character to random position
         arrayOriginal[jumpArrayPosition] = text;
         randomTitleChanged = arrayOriginal.join('');
@@ -117,12 +117,6 @@ $(document).ready(function(){
             // be aware of name conflict, might be benifical, not not be
             randomTitleChanged = $(".random-language").text();
         }, 150);
-
-        /* if bigger than 11 characters
-            -break word
-            -place in new line
-            -no more than 3 lines
-        */
     }
 
     function endCycle(){
@@ -137,6 +131,37 @@ $(document).ready(function(){
 
     function endCycleBackToOriginal(){
         clearInterval(backToOriginalInterval);
+    }
+
+
+    function colorSwitch(color){
+        var limit = false;
+        var anyColor = color;
+        
+        if (anyColor === 255){
+            limit = true;
+        }
+        
+        if (anyColor === 0){
+            limit = false;
+        }
+        
+        if (anyColor === true){
+            return colorDown(anyColor);
+        }
+        
+        if (anyColor === false){
+           return colorUp(anyColor);
+        }
+        
+        function colorUp(color){
+            return color + 1;
+        }
+
+        function colorDown(color){
+            return color - 1;
+        }
+        
     }
 
     function quoteGenerator(){
@@ -162,6 +187,4 @@ $(document).ready(function(){
     $(".random-language").on("click", function(){
         $(".add-Quote").text(quoteGenerator());
     });
-
-
 });
