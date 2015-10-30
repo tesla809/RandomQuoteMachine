@@ -134,35 +134,26 @@ $(document).ready(function(){
     }
 
 
-    function colorSwitch(color){
-        var limit = false;
-        var anyColor = color;
-        
-        if (anyColor === 255){
-            limit = true;
-        }
-        
-        if (anyColor === 0){
-            limit = false;
-        }
-        
-        if (anyColor === true){
-            return colorDown(anyColor);
-        }
-        
-        if (anyColor === false){
-           return colorUp(anyColor);
-        }
-        
-        function colorUp(color){
-            return color + 1;
-        }
-
-        function colorDown(color){
-            return color - 1;
-        }
-        
+var colorChangeObj ={
+    colorUp: function(color){
+         color = color + 1;
+         console.log(color);
+         return color;
+    },
+    colorDown: function(color){
+        color = color - 1;
+        console.log(color);
+        return color;
+    },
+    alphaUp: function(opacity){
+        opacity = opacity + 0.01;
+        return opacity;
+    },
+    alphaDown: function(opacity){
+        opacity = opacity - 0.01;
+        return opacity;
     }
+};
 
     function quoteGenerator(){
         // have data in another file
