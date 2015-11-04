@@ -20,11 +20,16 @@ $(document).ready(function(){
     var randomTitle = "Say...What?";
     // changes back to title;
     var randomTitleChanged = "";
+    //get colors from background
+
+
 
     //Set to Title;
     $(".random-language").text(randomTitle);
 
 
+
+    /*Random Language*/
     // create language object constructor function-
     function Language(startLang, endLang, langName){    
         this.startLang = startLang;
@@ -52,7 +57,7 @@ $(document).ready(function(){
         var randomPickStart = Math.floor(Math.random() * languageArray.length);
         var randomPickEnd = randomPickStart;
         
-        console.log("randomPickStart: " + randomPickStart,"randomPickEnd: " + randomPickEnd);
+        // console.log("randomPickStart: " + randomPickStart,"randomPickEnd: " + randomPickEnd);
         
         return {
             startLang: languageArray[0].startLang,
@@ -61,8 +66,29 @@ $(document).ready(function(){
         
     }
 
-    // splits text string
-    // eliminate, its not useful, just use .split("") method
+    /*Random Color*/
+    // getting value for future manipulation
+    var backgroundColor = $('body').css('background-color');
+    // takes rgb and creates an array of red, green, blue
+    var rgba = backgroundColor.replace(/^(rgb|rgba)\(/,'').replace(/\)$/,'').replace(/\s/g,'').split(',');
+
+    var alpha = $('body').css('opacity');
+    var red = rgba[0];
+    var green = rgba[1];
+    var blue = rgba[2];
+ 
+
+    console.log("red: " + red);
+    console.log("green: " + green);
+    console.log("blue: " + blue);
+    console.log("alpha: " + alpha);
+
+
+
+
+
+
+    /*Random Text*/
     function toArray(string){
         var array = string.split("");
         return array;
@@ -106,7 +132,7 @@ $(document).ready(function(){
 
     var titleArray = toArray(randomTitle);
 
-
+    /*Timer to create changes*/    
     // needs to be in outer scope to work
     var randomIntervalSet;
     var backToOriginalInterval;
@@ -133,128 +159,6 @@ $(document).ready(function(){
     function endCycleBackToOriginal(){
         clearInterval(backToOriginalInterval);
     }
-
-
-var colorObj = {
-        randomNumber: Math.floor(Math.random() * 100),
-        randomColorPick: Math.floor(Math.random() * 2),
-        alphaRandomNumber: Math.round(Math.random() * 100)/100,
-        colorArray: [red,green,blue,alpha],
-        colorUp: function(color){
-                color = color + 1;
-                return color;
-        },
-        colorDown: function(color){
-                color--;
-                return color;
-        },
-        colorPicker: function(){
-            var randomColor = colorObj.randomColorPick;
-            if(colorObj.colorArray[randomColor] >= 255){
-                // set interval calls here
-                // return colorGreaterThanLimit(randomColor);
-            } 
-            
-            if (colorObj.colorArray[randomColor] <= 0){
-                // set interval calls here
-                // return colorLessThan(randomColor);
-            }
-            
-            if (colorObj.randomNumber <= 50){
-                switch(randomColor){
-                    case 0:
-                        red = colorObj.colorDown(colorObj.colorArray[randomColor]);
-                        return red;
-                    case 1:
-                        green = colorObj.colorDown(colorObj.colorArray[randomColor]);
-                        return green;
-                    case 2:
-                        blue = colorObj.colorDown(colorObj.colorArray[randomColor]);
-                        return blue;
-                }
-                
-            } else{
-                switch(randomColor){
-                    case 0:
-                        red = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                        return red;
-                    case 1:
-                        green = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                        return green;
-                    case 2:
-                        blue = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                        return blue;
-                }
-            }      
-        },
-        colorGreaterThanLimit: function(randomColor){
-            for (var i = 0; i <= colorObj.randomNumber; i++){
-                switch(randomColor){
-                        case 0:
-                            red = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                            return red;
-                        case 1:
-                            green = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                            return green;
-                        case 2:
-                            blue = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                            return blue;
-                    }
-                }
-        },
-        colorLessThanLimit: function(randomColor){
-            // random amount up or down
-            for(var i = 0; i <= colorObj.randomNumber; i++){
-                switch(randomColor){
-                        case 0:
-                            red = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                            return red;
-                        case 1:
-                            green = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                            return green;
-                        case 2:
-                            blue = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                            return blue;
-                    }
-            } 
-        },
-        alphaUp: function(){
-                alpha = alpha + 0.1;
-                alpha = Math.round(alpha * 100)/100;
-                return alpha;
-        },
-        alphaDown: function(){
-                alpha = alpha - 0.1;
-                alpha = Math.round(alpha * 100)/100;
-                return alpha;
-        },
-        alphaPicker: function(){
-            if(alpha >= 1){
-                // alphaGreaterThanLimit()
-            }
-            if(alpha <= 0){
-                // alphaLessThanLimit()
-            }
-            
-            if (alphaRandomNumber <= 0.50){
-            alpha = alphaUp();
-             } else {
-                alpha = alphaDown();
-             }
-        },
-        alphaGreaterThanLimit: function(){
-            for (var i = 0; i <= colorObj.alphaRandomNumber; i++){
-                alpha = alphaUp();
-                return alpha;
-            }
-        },
-        alphaLessThanLimit: function(){
-            for (var i = 0; i <= colorObj.alphaRandomNumber; i++){
-                alpha = alphaDown();
-                return alpha;
-            }
-        }
-    };
 
 
     // move data to new file.
