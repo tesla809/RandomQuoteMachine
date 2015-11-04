@@ -134,27 +134,137 @@ $(document).ready(function(){
     }
 
 
-var colorChangeObj ={
-    colorUp: function(color){
-         color = color + 1;
-         console.log(color);
-         return color;
-    },
-    colorDown: function(color){
-        color = color - 1;
-        console.log(color);
-        return color;
-    },
-    alphaUp: function(opacity){
-        opacity = opacity + 0.01;
-        return opacity;
-    },
-    alphaDown: function(opacity){
-        opacity = opacity - 0.01;
-        return opacity;
-    }
-};
+    var colorObj = {
+        randomNumber: Math.floor(Math.random() * 100),
+        randomColorPick: Math.floor(Math.random() * 2),
+        alphaRandomNumber: Math.round(Math.random() * 100)/100,
+        colorArray: [red,green,blue,alpha],
+        colorUp: function(color){
+                color = color + 1;
+                return color;
+        },
+        colorDown: function(color){
+                color--;
+                return color;
+        },
+        colorPicker: function(){
+            var randomColor = colorObj.randomColorPick;
+            if(color >= 255){
+                // set interval calls here
+                // return colorGreaterThanLimit(randomColor);
+            } 
+            
+            if (color <= 0){
+                // set interval calls here
+                // return colorLessThan(randomColor);
+            }
+            
+            if (colorObj.randomNumber <= 50){
+                switch(randomColor){
+                    case 0:
+                        red = colorObj.colorDown(colorObj.colorArray[randomColor]);
+                        console.log(red);
+                        break;
+                    case 1:
+                        green = colorObj.colorDown(colorObj.colorArray[randomColor]);
+                        console.log(green);
+                        break;
+                    case 2:
+                        blue = colorObj.colorDown(colorObj.colorArray[randomColor]);
+                        console.log(blue);
+                        break;
+                }
+                
+            } else{
+                switch(randomColor){
+                    case 0:
+                        red = colorObj.colorUp(colorObj.colorArray[randomColor]);
+                        console.log(red);
+                        break;
+                    case 1:
+                        green = colorObj.colorUp(colorObj.colorArray[randomColor]);
+                        console.log(green);
+                        break;
+                    case 2:
+                        blue = colorObj.colorUp(colorObj.colorArray[randomColor]);
+                        console.log(blue);
+                        break;
+                }
+            }      
+        },
+        colorGreaterThanLimit: function(randomColor){
+            for (var i = 0; i <= colorObj.randomNumber; i++){
+                switch(colorObj.randomColor){
+                        case 0:
+                            red = colorObj.colorUp(colorObj.colorArray[randomColor]);
+                            console.log(red);
+                            break;
+                        case 1:
+                            green = colorObj.colorUp(colorObj.colorArray[randomColor]);
+                            console.log(green);
+                            break;
+                        case 2:
+                            blue = colorObj.colorUp(colorObj.colorArray[randomColor]);
+                            console.log(blue);
+                            break;
+                    }
+                }
+        },
+        colorLessThanLimit: function(randomColor){
+            // random amount up or down
+            for(var i = 0; i <= colorObj.randomNumber; i++){
+                switch(randomColor){
+                        case 0:
+                            red = colorObj.colorUp(colorObj.colorArray[randomColor]);
+                            console.log(red);
+                            break;
+                        case 1:
+                            green = colorObj.colorUp(colorObj.colorArray[randomColor]);
+                            console.log(green);
+                            break;
+                        case 2:
+                            blue = colorObj.colorUp(colorObj.colorArray[randomColor]);
+                            console.log(blue);
+                            break;
+                    }
+            } 
+        },
+        alphaUp: function(){
+                alpha = alpha + 0.2;
+                return alpha;
+        },
+        alphaDown: function(){
+                alpha = alpha - 0.2;
+                return alpha;
+        },
+        alphaPicker: function(){
+            if(alpha >= 1){
+                // alphaGreaterThanLimit()
+            }
+            if(alpha <= 0){
+                // alphaLessThanLimit()
+            }
+            
+            if (alphaRandomNumber <= 0.50){
+            alpha = alphaUp();
+             } else {
+                alpha = alphaDown();
+             }
+        },
+        alphaGreaterThanLimit: function(){
+            for (var i = 0; i <= colorObj.alphaRandomNumber; i++){
+                alpha = alphaUp();
+            }
+        },
+        alphaLessThanLimit: function(){
+            for (var i = 0; i <= colorObj.alphaRandomNumber; i++){
+                alpha = alphaDown();
+            }
+        }
+    };
 
+
+    // move data to new file.
     function quoteGenerator(){
         // have data in another file
         // use this function though
