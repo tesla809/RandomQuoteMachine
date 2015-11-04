@@ -192,16 +192,13 @@ $(document).ready(function(){
                 switch(colorObj.randomColor){
                         case 0:
                             red = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                            console.log(red);
-                            break;
+                            return red;
                         case 1:
                             green = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                            console.log(green);
-                            break;
+                            return green;
                         case 2:
                             blue = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                            console.log(blue);
-                            break;
+                            return blue;
                     }
                 }
         },
@@ -211,16 +208,13 @@ $(document).ready(function(){
                 switch(randomColor){
                         case 0:
                             red = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                            console.log(red);
-                            break;
+                            return red;
                         case 1:
                             green = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                            console.log(green);
-                            break;
+                            return green;
                         case 2:
                             blue = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                            console.log(blue);
-                            break;
+                            return blue;
                     }
             } 
         },
@@ -249,11 +243,13 @@ $(document).ready(function(){
         alphaGreaterThanLimit: function(){
             for (var i = 0; i <= colorObj.alphaRandomNumber; i++){
                 alpha = alphaUp();
+                return alpha;
             }
         },
         alphaLessThanLimit: function(){
             for (var i = 0; i <= colorObj.alphaRandomNumber; i++){
                 alpha = alphaDown();
+                return alpha;
             }
         }
     };
