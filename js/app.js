@@ -150,12 +150,12 @@ $(document).ready(function(){
         },
         colorPicker: function(){
             var randomColor = colorObj.randomColorPick;
-            if(color >= 255){
+            if(ccolorObj.colorArray[randomColor] >= 255){
                 // set interval calls here
                 // return colorGreaterThanLimit(randomColor);
             } 
             
-            if (color <= 0){
+            if (colorObj.colorArray[randomColor] <= 0){
                 // set interval calls here
                 // return colorLessThan(randomColor);
             }
@@ -164,32 +164,26 @@ $(document).ready(function(){
                 switch(randomColor){
                     case 0:
                         red = colorObj.colorDown(colorObj.colorArray[randomColor]);
-                        console.log(red);
-                        break;
+                        return red;
                     case 1:
                         green = colorObj.colorDown(colorObj.colorArray[randomColor]);
-                        console.log(green);
-                        break;
+                        return green;
                     case 2:
                         blue = colorObj.colorDown(colorObj.colorArray[randomColor]);
-                        console.log(blue);
-                        break;
+                        return blue;
                 }
                 
             } else{
                 switch(randomColor){
                     case 0:
                         red = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                        console.log(red);
-                        break;
+                        return red;
                     case 1:
                         green = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                        console.log(green);
-                        break;
+                        return green;
                     case 2:
                         blue = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                        console.log(blue);
-                        break;
+                        return blue;
                 }
             }      
         },
