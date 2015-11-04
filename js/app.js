@@ -135,7 +135,7 @@ $(document).ready(function(){
     }
 
 
-    var colorObj = {
+var colorObj = {
         randomNumber: Math.floor(Math.random() * 100),
         randomColorPick: Math.floor(Math.random() * 2),
         alphaRandomNumber: Math.round(Math.random() * 100)/100,
@@ -150,7 +150,7 @@ $(document).ready(function(){
         },
         colorPicker: function(){
             var randomColor = colorObj.randomColorPick;
-            if(ccolorObj.colorArray[randomColor] >= 255){
+            if(colorObj.colorArray[randomColor] >= 255){
                 // set interval calls here
                 // return colorGreaterThanLimit(randomColor);
             } 
@@ -189,7 +189,7 @@ $(document).ready(function(){
         },
         colorGreaterThanLimit: function(randomColor){
             for (var i = 0; i <= colorObj.randomNumber; i++){
-                switch(colorObj.randomColor){
+                switch(randomColor){
                         case 0:
                             red = colorObj.colorUp(colorObj.colorArray[randomColor]);
                             return red;
@@ -219,11 +219,13 @@ $(document).ready(function(){
             } 
         },
         alphaUp: function(){
-                alpha = alpha + 0.2;
+                alpha = alpha + 0.1;
+                alpha = Math.round(alpha * 100)/100;
                 return alpha;
         },
         alphaDown: function(){
-                alpha = alpha - 0.2;
+                alpha = alpha - 0.1;
+                alpha = Math.round(alpha * 100)/100;
                 return alpha;
         },
         alphaPicker: function(){
