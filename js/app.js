@@ -1,6 +1,7 @@
 //app.js
 
 // to do:
+
 /*
 -Add text to div *
 -Add new font to div *
