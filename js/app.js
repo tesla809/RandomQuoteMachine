@@ -69,24 +69,28 @@ $(document).ready(function(){
     /*Random Color*/
     // getting value for future manipulation
     var backgroundColor = $('body').css('background-color');
-    // takes rgb and creates an array of red, green, blue
-    var rgba = backgroundColor.replace(/^(rgb|rgba)\(/,'').replace(/\)$/,'').replace(/\s/g,'').split(',');
+    var $body = $("body"); 
 
-    var alpha = $('body').css('opacity');
-    var red = rgba[0];
-    var green = rgba[1];
-    var blue = rgba[2];
- 
-
-    console.log("red: " + red);
-    console.log("green: " + green);
-    console.log("blue: " + blue);
-    console.log("alpha: " + alpha);
-
-
+    var colorObj = {
+        randomNumber: Math.floor(Math.random() * 100),
+        randomColorPick: Math.floor(Math.random() * 2),
+        alphaRandomNumber: Math.round(Math.random() * 100)/100,
+        rgbaGrab: function(element){
+            var rgba = element.css('background-color');
+            return {
+                rgb: rgba.replace(/^(rgb|rgba)\(/,'').replace(/\)$/,'').replace(/\s/g,'').split(','),
+                alpha: element.css("opacity")
+            } 
+        },
 
 
+    };
 
+    console.log(colorObj.randomNumber);
+    console.log(colorObj.randomColorPick);
+    console.log(colorObj.alphaRandomNumber);
+    console.log(colorObj.rgbaGrab($body).rgb);
+    console.log(colorObj.rgbaGrab($body).alpha);
 
     /*Random Text*/
     function toArray(string){
