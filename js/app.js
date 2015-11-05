@@ -103,6 +103,7 @@ $(document).ready(function(){
             // to ensure gradual change in color
             // and to ensure all values are within color limits
             var randomGradualLimitBalance = colorObj.randomNumber;
+
             if(colorObj.colorArray[randomColor] >= 255){
                 return colorObj.colorArray[randomColor] - Math.round((randomGradualLower/2));
             } 
@@ -138,6 +139,16 @@ $(document).ready(function(){
                         return blue;
                 }
             }      
+        },
+        alphaUp: function(opacity){
+            opacity = opacity + 0.1;
+            opacity = Math.round(opacity * 100)/100;
+            return opacity;
+        },
+        alphaDown: function(opacity){
+            opacity = opacity - 0.1;
+            opacity= Math.round(opacity * 100)/100;
+            return opacity;
         },
 
 
