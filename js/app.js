@@ -82,6 +82,14 @@ $(document).ready(function(){
                 alpha: element.css("opacity")
             } 
         },
+        // this way each element can have its own color array made
+        ColorArrayConstructor: function(rgb, opacity){
+            this.red = rgb[0];
+            this.green = rgb[1];
+            this.blue = rgb[2];
+            this.alpha = opacity;
+        }, 
+
 
 
     };
