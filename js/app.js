@@ -97,9 +97,55 @@ $(document).ready(function(){
             color--;
             return color;
         },
+        colorPicker: function(){
+            var randomColor = colorObj.randomColorPick;
+
+            // to ensure gradual change in color
+            // and to ensure all values are within color limits
+            var randomGradualLimitBalance = colorObj.randomNumber;
+            if(colorObj.colorArray[randomColor] >= 255){
+                return colorObj.colorArray[randomColor] - Math.round((randomGradualLower/2));
+            } 
+            
+            if (colorObj.colorArray[randomColor] <= 0){
+                return colorObj.colorArray[randomColor] + Math.round((randomGradualLower/2));
+            }
+            
+            // 50% chance values go down or up.
+            if (colorObj.randomNumber <= 50){
+                switch(randomColor){
+                    case 0:
+                        red = colorObj.colorDown(colorObj.colorArray[randomColor]);
+                        return red;
+                    case 1:
+                        green = colorObj.colorDown(colorObj.colorArray[randomColor]);
+                        return green;
+                    case 2:
+                        blue = colorObj.colorDown(colorObj.colorArray[randomColor]);
+                        return blue;
+                }
+                
+            } else {
+                switch(randomColor){
+                    case 0:
+                        red = colorObj.colorUp(colorObj.colorArray[randomColor]);
+                        return red;
+                    case 1:
+                        green = colorObj.colorUp(colorObj.colorArray[randomColor]);
+                        return green;
+                    case 2:
+                        blue = colorObj.colorUp(colorObj.colorArray[randomColor]);
+                        return blue;
+                }
+            }      
+        },
 
 
     };
+
+    // place logic of if values are over limit
+    // >255 for color, >1 for opacity
+    // in setInterval of logic
 
     console.log(colorObj.randomNumber);
     console.log(colorObj.randomColorPick);
