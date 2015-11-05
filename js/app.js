@@ -88,8 +88,15 @@ $(document).ready(function(){
             this.green = rgb[1];
             this.blue = rgb[2];
             this.alpha = opacity;
-        }, 
-
+        },
+        colorUp: function(color){
+                color = color + 1;
+                return color;
+        },
+        colorDown: function(color){
+            color--;
+            return color;
+        },
 
 
     };
