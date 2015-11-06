@@ -10,7 +10,7 @@
 }
 
 html, body {
-  background-color: rgb(235,66,62);
+  background-color: rgba(235,66,62,1);
   height: 50%;
   width: 50%;
   margin: 10% auto;
