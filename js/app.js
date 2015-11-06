@@ -20,13 +20,13 @@ $(document).ready(function(){
     var randomTitle = "Say...What?";
     // changes back to title;
     var randomTitleChanged = "";
-    //get colors from background
 
-
-
-    //Set to Title;
+    //Set to Title
     $(".random-language").text(randomTitle);
 
+    //Get body color for future manipulation
+    var backgroundColor = $('body').css('background-color');
+    var $body = $("body"); 
 
 
     /*Random Language*/
@@ -63,106 +63,57 @@ $(document).ready(function(){
             startLang: languageArray[0].startLang,
             endLang: languageArray[0].endLang  
         };
-        
     }
 
     /*Random Color*/
-    // getting value for future manipulation
-    var backgroundColor = $('body').css('background-color');
-    var $body = $("body"); 
 
-    var colorObj = {
-        randomNumber: Math.floor(Math.random() * 100),
-        randomColorPick: Math.floor(Math.random() * 2),
-        alphaRandomNumber: Math.round(Math.random() * 100)/100,
-        rgbaGrab: function(element){
-            var rgba = element.css('background-color');
-            return {
-                rgb: rgba.replace(/^(rgb|rgba)\(/,'').replace(/\)$/,'').replace(/\s/g,'').split(','),
-                alpha: element.css("opacity")
-            } 
-        },
-        // this way each element can have its own color array made
-        ColorArrayConstructor: function(rgb, opacity){
-            this.red = rgb[0];
-            this.green = rgb[1];
-            this.blue = rgb[2];
-            this.alpha = opacity;
-        },
-        colorUp: function(color){
-                color = color + 1;
-                return color;
-        },
-        colorDown: function(color){
-            color--;
-            return color;
-        },
-        colorPicker: function(){
-            var randomColor = colorObj.randomColorPick;
+ 
+    /* Background Color Change */
+    function rgbaGrab(element){
+        var rgb = element.css('background-color');
+        var rgbArray = rgb.replace(/^(rgb|rgba)\(/,'').replace(/\)$/,'').replace(/\s/g,'').split(',');
+        var red =  rgbArray[0];
+        var green =  rgbArray[1];
+        var blue =  rgbArray[2];
+        var alpha = element.css("opacity");
 
-            // to ensure gradual change in color
-            // and to ensure all values are within color limits
-            var randomGradualLimitBalance = colorObj.randomNumber;
+        return {
+            red: red,
+            green: green,
+            blue: blue,
+            alpha: alpha
+        }
+    }
 
-            if(colorObj.colorArray[randomColor] >= 255){
-                return colorObj.colorArray[randomColor] - Math.round((randomGradualLower/2));
-            } 
-            
-            if (colorObj.colorArray[randomColor] <= 0){
-                return colorObj.colorArray[randomColor] + Math.round((randomGradualLower/2));
-            }
-            
-            // 50% chance values go down or up.
-            if (colorObj.randomNumber <= 50){
-                switch(randomColor){
-                    case 0:
-                        red = colorObj.colorDown(colorObj.colorArray[randomColor]);
-                        return red;
-                    case 1:
-                        green = colorObj.colorDown(colorObj.colorArray[randomColor]);
-                        return green;
-                    case 2:
-                        blue = colorObj.colorDown(colorObj.colorArray[randomColor]);
-                        return blue;
-                }
-                
-            } else {
-                switch(randomColor){
-                    case 0:
-                        red = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                        return red;
-                    case 1:
-                        green = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                        return green;
-                    case 2:
-                        blue = colorObj.colorUp(colorObj.colorArray[randomColor]);
-                        return blue;
-                }
-            }      
-        },
-        alphaUp: function(opacity){
-            opacity = opacity + 0.1;
-            opacity = Math.round(opacity * 100)/100;
-            return opacity;
-        },
-        alphaDown: function(opacity){
-            opacity = opacity - 0.1;
-            opacity= Math.round(opacity * 100)/100;
-            return opacity;
-        },
+    console.log(rgbaGrab($body).red);
+
+    function colorChange(color){
+        var randomNumber =  Math.floor(Math.random() * 6)
+
+        return color + randomNumber;
+    }
+
+    // to revert back to color
+    function colorRevert(originalColor, randomColor){
+        var differenceColor;
+        if(originalColor === randomColor){
+            return originalColor;
+        } else if (originalColor > randomColor){
+            return randomColor = randomColor + 1;
+        } else {
+            return randomColor = randomColor - 1;
+        }     
+    }
+
+    function changeElement(element){
+        var elementToChange = document.getElementsByTagName(element);
+
+        // make equal to something
+        document.body.style.backgroundColor;
+        return elementToChange;
+    }
 
 
-    };
-
-    // place logic of if values are over limit
-    // >255 for color, >1 for opacity
-    // in setInterval of logic
-
-    console.log(colorObj.randomNumber);
-    console.log(colorObj.randomColorPick);
-    console.log(colorObj.alphaRandomNumber);
-    console.log(colorObj.rgbaGrab($body).rgb);
-    console.log(colorObj.rgbaGrab($body).alpha);
 
     /*Random Text*/
     function toArray(string){
@@ -219,6 +170,8 @@ $(document).ready(function(){
             // get the value on every call back here.
             // be aware of name conflict, might be benifical, not not be
             randomTitleChanged = $(".random-language").text();
+            
+            
         }, 150);
     }
 
@@ -248,6 +201,9 @@ $(document).ready(function(){
 
         return outputQuote;
     }
+
+    /*** User Interaction ***/
+
 
     // changes random text every second.
     $(".random-language").mouseenter(function(){
