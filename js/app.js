@@ -24,9 +24,20 @@ $(document).ready(function(){
     //Set to Title
     $(".random-language").text(randomTitle);
 
-    //Get body color for future manipulation
-    var backgroundColor = $('body').css('background-color');
-    var $body = $("body"); 
+    //Get html color for future manipulation
+    var htmlBackgroundColor = $("html").css("background-color");
+    var $html = $("html"); 
+
+    var red = colorChange(rgbaGrab($html).red);
+    var green = colorChange(rgbaGrab($html).green);
+    var blue =  colorChange(rgbaGrab($html).blue);
+
+    // alpha needs own color change & revert function.
+    var alpha="";  
+
+    htmlBackgroundColorTest = "rgba("+red+","+green+","+blue+","+alpha+")";
+
+    console.log(alphaChange());
 
 
     /*Random Language*/
@@ -72,10 +83,10 @@ $(document).ready(function(){
     function rgbaGrab(element){
         var rgb = element.css('background-color');
         var rgbArray = rgb.replace(/^(rgb|rgba)\(/,'').replace(/\)$/,'').replace(/\s/g,'').split(',');
-        var red =  rgbArray[0];
-        var green =  rgbArray[1];
-        var blue =  rgbArray[2];
-        var alpha = element.css("opacity");
+        var red =  parseInt(rgbArray[0]);
+        var green =  parseInt(rgbArray[1]);
+        var blue =  parseInt(rgbArray[2]);
+        var alpha = parseInt(element.css("opacity"));
 
         return {
             red: red,
@@ -85,13 +96,26 @@ $(document).ready(function(){
         }
     }
 
-    console.log(rgbaGrab($body).red);
-
     function colorChange(color){
-        var randomNumber =  Math.floor(Math.random() * 6)
-
-        return color + randomNumber;
+        var randomColorValue = Math.floor(Math.random() * (255 - 0 + 1)) + 0;
+        var randomNumber = Math.floor(Math.random() * 10) + 1;
+        
+        if (randomNumber <= 5){
+            color = color + randomColorValue;
+        }
+        
+        if (randomNumber > 5){
+            color = color - randomColorValue;
+        }
+        
+        if(color < 0 || color > 255){
+            return colorChange(color);
+        } else{
+            return color; 
+        }
     }
+
+    
 
     // to revert back to color
     function colorRevert(originalColor, randomColor){
@@ -103,17 +127,28 @@ $(document).ready(function(){
         } else {
             return randomColor = randomColor - 1;
         }     
+        // this would be much more efficent if I can use the closet set of two primes 
+        // between 0 and 255.
     }
 
-    function changeElement(element){
-        var elementToChange = document.getElementsByTagName(element);
-
-        // make equal to something
-        document.body.style.backgroundColor;
-        return elementToChange;
+    function alphaChange(opacity){
+        var randomOpacity = Math.round(Math.random() * 100)/100;
+        var randomNumber = Math.floor(Math.random() * 10) + 1;
+        
+        if (randomNumber <= 5){
+            opacity = opacity + randomOpacity;
+        }
+        
+        if (randomNumber > 5){
+            opacity = opacity - randomOpacity;
+        }
+        
+        if(opacity < 0 || opacity > 1){
+            return alphaChange(opacity);
+        } else{
+            return opacity; 
+        }
     }
-
-
 
     /*Random Text*/
     function toArray(string){
@@ -158,19 +193,21 @@ $(document).ready(function(){
     }
 
     var titleArray = toArray(randomTitle);
-
-    /*Timer to create changes*/    
+   
     // needs to be in outer scope to work
     var randomIntervalSet;
     var backToOriginalInterval;
 
+    // future fix, pass in parameters to change. later.
+    // that way any text or element can be randomized.
     function startCycle(){ 
         randomIntervalSet = setInterval(function(){
+            // works by getting the new value on every call back.
+            //text
             $(".random-language").text(randomText(randomLanguage().startLang, randomLanguage().endLang, titleArray));
-            // get the value on every call back here.
-            // be aware of name conflict, might be benifical, not not be
             randomTitleChanged = $(".random-language").text();
             
+            //color       
             
         }, 150);
     }
@@ -202,9 +239,10 @@ $(document).ready(function(){
         return outputQuote;
     }
 
+
+
+
     /*** User Interaction ***/
-
-
     // changes random text every second.
     $(".random-language").mouseenter(function(){
         startCycle();
