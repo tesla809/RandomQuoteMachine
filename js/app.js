@@ -33,11 +33,11 @@ $(document).ready(function(){
     var blue =  colorChange(rgbaGrab($html).blue);
 
     // alpha needs own color change & revert function.
-    var alpha="";  
+    var alpha= alphaChange(rgbaGrab($html).alpha);  
 
     htmlBackgroundColorTest = "rgba("+red+","+green+","+blue+","+alpha+")";
 
-    console.log(alphaChange());
+    console.log(alpha);
 
 
     /*Random Language*/
@@ -115,8 +115,6 @@ $(document).ready(function(){
         }
     }
 
-    
-
     // to revert back to color
     function colorRevert(originalColor, randomColor){
         var differenceColor;
@@ -148,6 +146,18 @@ $(document).ready(function(){
         } else{
             return opacity; 
         }
+    }
+
+    function alphaRevert(orginalOpacity, randomOpacity){
+        if(orginalOpacity === randomOpacity){
+            return orginalOpacity;
+        } else if (orginalOpacity > randomOpacity){
+            randomOpacity = randomOpacity + 0.01;
+            return randomOpacity;
+        } else {
+            randomOpacity = randomOpacity - 0.01;
+            return randomOpacity;
+        } 
     }
 
     /*Random Text*/
