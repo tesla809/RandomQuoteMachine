@@ -89,7 +89,7 @@ $(document).ready(function(){
     }
 
     function colorChange(color){
-        var randomColorValue = Math.floor(Math.random() * (255 - 0 + 1)) + 0;
+        var randomColorValue = Math.floor(Math.random() * (20 - 0 + 1)) + 0;
         var randomNumber = Math.floor(Math.random() * 10) + 1;
         
         if (randomNumber <= 5){
@@ -132,8 +132,12 @@ $(document).ready(function(){
         if (randomNumber > 5){
             opacity = opacity - randomOpacity;
         }
+
+        if(Math.abs(randomOpacity-opacity) > 0.60){
+            return alphaChange(opacity);
+        }
         
-        if(opacity < 0 || opacity > 1){
+        if(opacity < 0.98 || opacity > 1){
             return alphaChange(opacity);
         } else{
             return Math.round(opacity * 100)/100; 
@@ -222,7 +226,7 @@ $(document).ready(function(){
                                                 +colorChange(rgbaGrab($html).green)+","
                                                 +colorChange(rgbaGrab($html).blue)+","
                                                 +alphaChange(rgbaGrab($html).alpha)+")");  
-        }, 1000)
+        }, 100)
     }
 
     function endCycle(){
