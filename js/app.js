@@ -31,14 +31,7 @@ $(document).ready(function(){
     var red = colorChange(rgbaGrab($html).red);
     var green = colorChange(rgbaGrab($html).green);
     var blue =  colorChange(rgbaGrab($html).blue);
-
-    // alpha needs own color change & revert function.
-    var alpha= alphaChange(rgbaGrab($html).alpha);  
-
-    htmlBackgroundColorTest = "rgba("+red+","+green+","+blue+","+alpha+")";
-
-    console.log(alpha);
-
+    var alpha= alphaChange(rgbaGrab($html).alpha);
 
     /*Random Language*/
     // create language object constructor function-
@@ -217,7 +210,13 @@ $(document).ready(function(){
             $(".random-language").text(randomText(randomLanguage().startLang, randomLanguage().endLang, titleArray));
             randomTitleChanged = $(".random-language").text();
             
-            //color       
+            //color
+            $html.css("background-color","rgba("+colorChange(rgbaGrab($html).red)+","
+                                                +colorChange(rgbaGrab($html).green)+","
+                                                +colorChange(rgbaGrab($html).blue)+","
+                                                +alphaChange(rgbaGrab($html).alpha)+")");
+            //$html.css("background-color","rgba("+red+","+green+","+blue+","+alpha+")");
+
             
         }, 150);
     }
