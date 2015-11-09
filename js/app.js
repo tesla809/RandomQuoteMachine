@@ -144,7 +144,7 @@ $(document).ready(function(){
         if(opacity < 0 || opacity > 1){
             return alphaChange(opacity);
         } else{
-            return opacity; 
+            return Math.round(opacity * 100)/100; 
         }
     }
 
