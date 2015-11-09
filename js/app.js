@@ -25,13 +25,12 @@ $(document).ready(function(){
     $(".random-language").text(randomTitle);
 
     //Get html color for future manipulation
-    var htmlBackgroundColor = $("html").css("background-color");
     var $html = $("html"); 
+    var orginalRed = rgbaGrab($html).red;
+    var orginalGreen = rgbaGrab($html).green;
+    var orginalBlue = rgbaGrab($html).blue;
+    var orginalAlpha = rgbaGrab($html).alpha;
 
-    var red = colorChange(rgbaGrab($html).red);
-    var green = colorChange(rgbaGrab($html).green);
-    var blue =  colorChange(rgbaGrab($html).blue);
-    var alpha= alphaChange(rgbaGrab($html).alpha);
 
     /*Random Language*/
     // create language object constructor function-
@@ -199,7 +198,9 @@ $(document).ready(function(){
    
     // needs to be in outer scope to work
     var randomIntervalSet;
+    var randomIntervalSetColor;
     var backToOriginalInterval;
+    var backToOriginalIntervalColor;
 
     // future fix, pass in parameters to change. later.
     // that way any text or element can be randomized.
@@ -209,20 +210,27 @@ $(document).ready(function(){
             //text
             $(".random-language").text(randomText(randomLanguage().startLang, randomLanguage().endLang, titleArray));
             randomTitleChanged = $(".random-language").text();
-            
+                      
+        }, 150);
+    }
+
+    function startCycleColor(){
+        randomIntervalSetColor = setInterval(function(){
+
             //color
             $html.css("background-color","rgba("+colorChange(rgbaGrab($html).red)+","
                                                 +colorChange(rgbaGrab($html).green)+","
                                                 +colorChange(rgbaGrab($html).blue)+","
-                                                +alphaChange(rgbaGrab($html).alpha)+")");
-            //$html.css("background-color","rgba("+red+","+green+","+blue+","+alpha+")");
-
-            
-        }, 150);
+                                                +alphaChange(rgbaGrab($html).alpha)+")");  
+        }, 1000)
     }
 
     function endCycle(){
         clearInterval(randomIntervalSet);
+    }
+
+    function endCycleColor(){
+        clearInterval(randomIntervalSetColor);
     }
 
     function backToOriginal(){
@@ -231,8 +239,21 @@ $(document).ready(function(){
         }, 75);
     }
 
+    function backToOriginalColor(){
+        backToOriginalIntervalColor = setInterval(function(){
+            $html.css("background-color","rgba("+colorRevert(orginalRed, rgbaGrab($html).red)+","
+                                                +colorRevert(orginalGreen, rgbaGrab($html).green)+","
+                                                +colorRevert(orginalBlue, rgbaGrab($html).blue)+","
+                                                +alphaRevert(orginalAlpha, rgbaGrab($html).alpha)+")");  
+        }, 25)
+    }
+
     function endCycleBackToOriginal(){
         clearInterval(backToOriginalInterval);
+    }
+
+    function endCycleBackToOrginalColor(){
+        clearInterval(backToOriginalIntervalColor);
     }
 
 
@@ -255,10 +276,14 @@ $(document).ready(function(){
     // changes random text every second.
     $(".random-language").mouseenter(function(){
         startCycle();
+        startCycleColor();
         endCycleBackToOriginal();
+        endCycleBackToOrginalColor();
     }).mouseleave(function(){
         endCycle();
+        endCycleColor();
         backToOriginal();
+        backToOriginalColor();
     });
 
     $(".random-language").on("click", function(){
