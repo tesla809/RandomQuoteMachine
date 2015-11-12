@@ -3,21 +3,14 @@
 // to do:
 
 /*
--Add text to div *
--Add new font to div *
--Add function to scroll thru each individual letters randomly 
-    -if not a space, must be underlined
--Add Loading three dots(...), that each goes up then down in a wave
--apply random individual letter scroll function to output div while loading takes place
-    -doubles in size, the shrinks to 0
-    -shows message in the same way. 
--Later on, add twitter api to get info from 
--Later on, add google translate api to translate quote
+ 
+-Add twitter api to get info from 
+-Add google translate api to translate quote
 */
 
 $(document).ready(function(){
     //create random text generation in quote area
-    var randomTitle = "Say...What?";
+    var randomTitle = "Click...What?";
     // changes back to title;
     var randomTitleChanged = "";
 
@@ -137,7 +130,7 @@ $(document).ready(function(){
             return alphaChange(opacity);
         }
         
-        if(opacity < 0.98 || opacity > 1){
+        if(opacity < 0.99 || opacity > 1){
             return alphaChange(opacity);
         } else{
             return Math.round(opacity * 100)/100; 
