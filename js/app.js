@@ -18,7 +18,7 @@ $(document).ready(function(){
     $(".random-language").text(randomTitle);
 
     //Get html color for future manipulation
-    var $html = $("html"); 
+    var $html = $("html");
     var orginalRed = rgbaGrab($html).red;
     var orginalGreen = rgbaGrab($html).green;
     var orginalBlue = rgbaGrab($html).blue;
@@ -27,11 +27,11 @@ $(document).ready(function(){
 
     /*Random Language*/
     // create language object constructor function-
-    function Language(startLang, endLang, langName){    
+    function Language(startLang, endLang, langName){
         this.startLang = startLang;
         this.endLang = endLang;
         this.langName = langName;
-    } 
+    }
 
     // function for random language pick-
     function randomLanguage(){
@@ -57,12 +57,11 @@ $(document).ready(function(){
         
         return {
             startLang: languageArray[0].startLang,
-            endLang: languageArray[0].endLang  
+            endLang: languageArray[0].endLang
         };
     }
 
     /*Random Color*/
-
  
     /* Background Color Change */
     function rgbaGrab(element){
@@ -78,7 +77,7 @@ $(document).ready(function(){
             green: green,
             blue: blue,
             alpha: alpha
-        }
+        };
     }
 
     function colorChange(color){
@@ -106,9 +105,11 @@ $(document).ready(function(){
         if(originalColor === randomColor){
             return originalColor;
         } else if (originalColor > randomColor){
-            return randomColor = randomColor + 1;
+            randomColor = randomColor + 1;
+            return  randomColor;
         } else {
-            return randomColor = randomColor - 1;
+            randomColor = randomColor - 1;
+            return randomColor;
         }     
         // this would be much more efficent if I can use the closet set of two primes 
         // between 0 and 255.
@@ -219,7 +220,7 @@ $(document).ready(function(){
                                                 +colorChange(rgbaGrab($html).green)+","
                                                 +colorChange(rgbaGrab($html).blue)+","
                                                 +alphaChange(rgbaGrab($html).alpha)+")");  
-        }, 100)
+        }, 100);
     }
 
     function endCycle(){
@@ -258,16 +259,109 @@ $(document).ready(function(){
     function quoteGenerator(){
         // have data in another file
         // use this function though
-        var sampleQuotesArray = ["Hello There!","This is a test", "another one!", "The sweat the sweat sexy drips"];
-        var randomQuotePosition = randomPosition(sampleQuotesArray);
+        var quotesArray = [
+                            "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.",
+                            "The important thing is not to stop questioning. Curiosity has its own reason for existing.", 
+                            "A Leader is a dealer in hope", 
+                            "Strive not to be a success, but rather to be of value.",
+                            " I attribute my success to this: I never gave or took any excuse.",
+                            "I’ve missed more than 9000 shots in my career. I’ve lost almost 300 games. 26 times I’ve been trusted to take the game winning shot and missed.I’ve failed over and over and over again in my life. And that is why I succeed.",
+                            "The most difficult thing is the decision to act, the rest is merely tenacity.",
+                            "We become what we think about.",
+                            "Life is what happens to you while you’re busy making other plans.",
+                            "Definiteness of purpose is the starting point of all achievement.",
+                            "The mind is everything. What you think you become.",
+                            "The best time to plant a tree was 20 years ago. The second best time is now.",
+                            "I am not a product of my circumstances. I am a product of my decisions.",
+                            "Your time is limited, so don’t waste it living someone else’s life.",
+                            "People often say that motivation doesn’t last. Well, neither does bathing.  That’s why we recommend it daily",
+                            "Life shrinks or expands in proportion to one’s courage.",
+                            "The best revenge is massive success.",
+                            "Whatever you can do, or dream you can, begin it.  Boldness has genius, power and magic in it.",
+                            "I’ve learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.",
+                            "Ask and it will be given to you; search, and you will find; knock and the door will be opened for you.",
+                            "There is only one way to avoid criticism: do nothing, say nothing, and be nothing.",
+                            "The only person you are destined to become is the person you decide to be.",
+                            "Everything you’ve ever wanted is on the other side of fear.",
+                            "Teach thy tongue to say, “I do not know,” and thous shalt progress.",
+                            "Fall seven times and stand up eight.",
+                            "Happiness is not something readymade.  It comes from your own actions.",
+                            "First, have a definite, clear practical ideal; a goal, an objective. Second, have the necessary means to achieve your ends; wisdom, money, materials, and methods. Third, adjust all your means to that end.",
+                            "We must believe that we are gifted for something, and that this thing, at whatever cost, must be attained.",
+                            "Challenges are what make life interesting and overcoming them is what makes life meaningful.",
+                            "If you want to lift yourself up, lift up someone else.",
+                            "What’s money? A man is a success if he gets up in the morning and goes to bed at night and in between does what he wants to do.",
+                            "A person who never made a mistake never tried anything new.",
+                            "It is never too late to be what you might have been",
+                            "A truly rich man is one whose children run into his arms when his hands are empty.",
+                            "Build your own dreams, or someone else will hire you to build theirs.",
+                            "It does not matter how slowly you go as long as you do not stop.",
+                            "I have learned over the years that when one’s mind is made up, this diminishes fear.",
+                            "Education costs money.  But then so does ignorance.",
+                            "It is not what you do for your children, but what you have taught them to do for themselves, that will make them successful human beings.",
+                            "Our lives begin to end the day we become silent about things that matter",
+                            "Remember no one can make you feel inferior without your consent",
+                            "Either write something worth reading or do something worth writing.",
+                            "Change your thoughts and you change your world"
+                            ];
 
-        var outputQuote = sampleQuotesArray[randomQuotePosition];
+        var authorArray = [
+                            "Albert Einstien",
+                            "Albert Einstien",
+                            "Napoleon Bonaparte",
+                            "Albert Einstien",
+                            "Florence Nightingale",
+                            "Micheal Jordan",
+                            "Amelia Earhart",
+                            "Earl Nightingale",
+                            "John Lennon",
+                            "W. Clement Stone",
+                            "Buddha",
+                            "Chinese Proverb",
+                            "Stephen Covey",
+                            "Steve Jobs",
+                            "Zig Ziglar",
+                            "Anais Nin",
+                            "Frank Sinatra",
+                            "Johann Wolfgang von Goethe",
+                            "Maya Angelou",
+                            "Jesus",
+                            "Aristotle",
+                            "Ralph Waldo Emerson",
+                            "George Addair",
+                            "Maimonides",
+                            "Japanese Proverb",
+                            "Dalhi Lama",
+                            "Aristotle",
+                            "Marie Curie",
+                            "Joshua J. Marine",
+                            "Booker T. Washington",
+                            "Bob Dylan",
+                            "Albert Einstien",
+                            "George Eliot",
+                            "Unknown",
+                            "Farrah Gray",
+                            "Confucius",
+                            "Rosa Parks",
+                            "Sir Claus Moser",
+                            "Ann Landers",
+                            "Martin Luther King Jr.",
+                            "Eleanor Roosevelt",
+                            "Benjamin Franklin",
+                            "Norman Vincent Peale"
+                            ];
 
-        return outputQuote;
-    }
+        var randomQuotePosition = randomPosition(quotesArray);
+        var position = randomQuotePosition;
 
+        var outputQuote = quotesArray[position];
+        var outputAuthor = authorArray[position];
 
-
+        return {
+            outputQuote : outputQuote,
+            outputAuthor : outputAuthor  
+    };
+}
 
     /*** User Interaction ***/
     // changes random text every second.
@@ -284,6 +378,8 @@ $(document).ready(function(){
     });
 
     $(".random-language").on("click", function(){
-        $(".add-Quote").text(quoteGenerator());
+        var quoteOutput = quoteGenerator();
+        $(".add-Quote").text(quoteOutput.outputQuote);
+        $(".add-Author").text(quoteOutput.outputAuthor);
     });
 });
