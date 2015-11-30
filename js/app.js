@@ -115,6 +115,7 @@ $(document).ready(function(){
         // between 0 and 255.
     }
 
+    // it works but its too buggy, fix the hack
     function alphaChange(opacity){
         var randomOpacity = Math.round(Math.random() * 100)/100;
         var randomNumber = Math.floor(Math.random() * 10) + 1;
@@ -131,6 +132,7 @@ $(document).ready(function(){
             return alphaChange(opacity);
         }
         
+        // need to fix algorithm to prevent callstack overflow
         if(opacity < 0.99 || opacity > 1){
             return alphaChange(opacity);
         } else{
@@ -194,6 +196,9 @@ $(document).ready(function(){
 
     var titleArray = toArray(randomTitle);
    
+
+    /* loop code to get things working */
+
     // needs to be in outer scope to work
     var randomIntervalSet;
     var randomIntervalSetColor;
@@ -243,7 +248,7 @@ $(document).ready(function(){
                                                 +colorRevert(orginalGreen, rgbaGrab($html).green)+","
                                                 +colorRevert(orginalBlue, rgbaGrab($html).blue)+","
                                                 +alphaRevert(orginalAlpha, rgbaGrab($html).alpha)+")");  
-        }, 25)
+        }, 25);
     }
 
     function endCycleBackToOriginal(){
@@ -255,10 +260,21 @@ $(document).ready(function(){
     }
 
 
-    // move data to new file.
+    /* audio */
+    // fix cross origin issue in chrome
+
+    var selectAudio = new Howl({
+        urls: ['audio/pickup-coin-audio-2.ogg']
+    });
+
+    var hoverAudio = new Howl({
+        urls: ['audio/Le-Moulin-Yann_Tiersen.ogg'],
+    });
+
+
+    /* Data section 
+       Should be divided, but its a single page app, so no big deal*/
     function quoteGenerator(){
-        // have data in another file
-        // use this function though
         var quotesArray = [
                             "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.",
                             "The important thing is not to stop questioning. Curiosity has its own reason for existing.", 
@@ -362,6 +378,8 @@ $(document).ready(function(){
             outputAuthor : outputAuthor  
     };
 }
+    
+    var songPlay = false;
 
     /*** User Interaction ***/
     // changes random text every second.
@@ -370,16 +388,21 @@ $(document).ready(function(){
         startCycleColor();
         endCycleBackToOriginal();
         endCycleBackToOrginalColor();
+        hoverAudio.play();
+        
+
     }).mouseleave(function(){
         endCycle();
         endCycleColor();
         backToOriginal();
         backToOriginalColor();
+        hoverAudio.mute();
     });
 
     $(".random-language").on("click", function(){
         var quoteOutput = quoteGenerator();
         $(".add-Quote").text(quoteOutput.outputQuote);
         $(".add-Author").text(quoteOutput.outputAuthor);
+        selectAudio.play();
     });
 });
