@@ -117,27 +117,25 @@ $(document).ready(function(){
 
     // it works but its too buggy, fix the hack
     function alphaChange(opacity){
-        var randomOpacity = Math.round(Math.random() * 100)/100;
-        var randomNumber = Math.floor(Math.random() * 10) + 1;
-        
-        if (randomNumber <= 5){
-            opacity = opacity + randomOpacity;
+        opacity = 0.99;
+        var randomOpacity = 0;
+        var randomNumber = 0;
+        for(var i = 0; i < 10; i++){
+            // 0.01 or 0
+            randomOpacity = (Math.round(Math.random() * 1)/1)/100;
+            randomNumber = Math.floor(Math.random() * 10) + 1;
+            console.log("randomNumber:" + randomOpacity);
         }
         
         if (randomNumber > 5){
-            opacity = opacity - randomOpacity;
-        }
-
-        if(Math.abs(randomOpacity-opacity) > 0.60){
-            return alphaChange(opacity);
+            opacity = opacity + randomOpacity;
         }
         
-        // need to fix algorithm to prevent callstack overflow
-        if(opacity < 0.99 || opacity > 1){
-            return alphaChange(opacity);
-        } else{
-            return Math.round(opacity * 100)/100; 
+        if (randomNumber <= 5){
+            opacity = opacity - randomOpacity;
         }
+        
+        return opacity;
     }
 
     function alphaRevert(orginalOpacity, randomOpacity){
@@ -193,6 +191,17 @@ $(document).ready(function(){
         return randomTitleChanged;
 
     }
+
+    /* audio */
+    var selectAudio = new Howl({
+        urls: ['audio/pickup-coin-audio-1.ogg'],
+        volume: 0.2
+    });
+
+    var hoverAudio = new Howl({
+        urls: ['audio/Le-Moulin-Yann_Tiersen.ogg']
+    });
+
 
     var titleArray = toArray(randomTitle);
    
@@ -258,19 +267,6 @@ $(document).ready(function(){
     function endCycleBackToOrginalColor(){
         clearInterval(backToOriginalIntervalColor);
     }
-
-
-    /* audio */
-    // fix cross origin issue in chrome
-
-    var selectAudio = new Howl({
-        urls: ['audio/pickup-coin-audio-2.ogg']
-    });
-
-    var hoverAudio = new Howl({
-        urls: ['audio/Le-Moulin-Yann_Tiersen.ogg'],
-    });
-
 
     /* Data section 
        Should be divided, but its a single page app, so no big deal*/
@@ -378,8 +374,6 @@ $(document).ready(function(){
             outputAuthor : outputAuthor  
     };
 }
-    
-    var songPlay = false;
 
     /*** User Interaction ***/
     // changes random text every second.
@@ -396,7 +390,7 @@ $(document).ready(function(){
         endCycleColor();
         backToOriginal();
         backToOriginalColor();
-        hoverAudio.mute();
+        hoverAudio.pause();
     });
 
     $(".random-language").on("click", function(){
