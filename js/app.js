@@ -33,6 +33,7 @@ $(document).ready(function(){
         this.langName = langName;
     }
 
+    // easter egg!!!
     // function for random language pick-
     function randomLanguage(){
         var languageArray = [];
@@ -276,8 +277,7 @@ $(document).ready(function(){
                             "The important thing is not to stop questioning. Curiosity has its own reason for existing.", 
                             "A Leader is a dealer in hope", 
                             "Strive not to be a success, but rather to be of value.",
-                            " I attribute my success to this: I never gave or took any excuse.",
-                            "I’ve missed more than 9000 shots in my career. I’ve lost almost 300 games. 26 times I’ve been trusted to take the game winning shot and missed.I’ve failed over and over and over again in my life. And that is why I succeed.",
+                            "I attribute my success to this: I never gave or took any excuse.",
                             "The most difficult thing is the decision to act, the rest is merely tenacity.",
                             "We become what we think about.",
                             "Life is what happens to you while you’re busy making other plans.",
@@ -318,12 +318,11 @@ $(document).ready(function(){
                             ];
 
         var authorArray = [
-                            "Albert Einstien",
-                            "Albert Einstien",
+                            "Albert Einstein",
+                            "Albert Einstein",
                             "Napoleon Bonaparte",
-                            "Albert Einstien",
+                            "Albert Einstein",
                             "Florence Nightingale",
-                            "Micheal Jordan",
                             "Amelia Earhart",
                             "Earl Nightingale",
                             "John Lennon",
@@ -349,7 +348,7 @@ $(document).ready(function(){
                             "Joshua J. Marine",
                             "Booker T. Washington",
                             "Bob Dylan",
-                            "Albert Einstien",
+                            "Albert Einstein",
                             "George Eliot",
                             "Unknown",
                             "Farrah Gray",
@@ -375,7 +374,37 @@ $(document).ready(function(){
     };
 }
 
+    /* tweet quote*/
+    var tweetButton = "<i class='fa fa-twitter'></i>";
+
+    
+    function tweetLengthManage(quote, author){
+        // eliminate bug with semi colon(;), replace with (:)
+        quote = quote.replace(";",":");
+
+        var quoteTotal = quote + " " + author;
+        var userName = " via @tesla809";
+        var quoteOutput = "\"" + quote + "\"" + "-" + author;
+        
+      
+        if (quoteTotal.length + userName.length < 141){
+            return quoteOutput;
+
+        } else{
+            var quoteShortenLength = quoteOutput.length - quote.length - userName.length - "...".length;
+            var quoteModShort = 140 - quoteShortenLength;
+            console.log(140 - quoteShortenLength + " characters left");
+            quote = quote.substring(0, quoteModShort) + "...";
+            
+            return "\"" + quote + "\"" + "-" + author;
+           
+        }
+    }
+    
+
     /*** User Interaction ***/
+    var spinner = "<i class='fa fa-cog fa-spin'></i>";
+
     // changes random text every second.
     $(".random-language").mouseenter(function(){
         startCycle();
@@ -383,6 +412,8 @@ $(document).ready(function(){
         endCycleBackToOriginal();
         endCycleBackToOrginalColor();
         hoverAudio.play();
+
+        $("h1").append(spinner);
         
 
     }).mouseleave(function(){
@@ -391,6 +422,8 @@ $(document).ready(function(){
         backToOriginal();
         backToOriginalColor();
         hoverAudio.pause();
+
+        $("i").remove(':first');
     });
 
     $(".random-language").on("click", function(){
@@ -398,5 +431,10 @@ $(document).ready(function(){
         $(".add-Quote").text(quoteOutput.outputQuote);
         $(".add-Author").text(quoteOutput.outputAuthor);
         selectAudio.play();
+
+        /* tweet */
+        var tweetLink = " <a href='http://twitter.com/home/?status="+tweetLengthManage(quoteOutput.outputQuote,quoteOutput.outputAuthor)+" via @tesla809'>"+tweetButton+"</a>";
+        $(".add-Author").append(tweetLink);
     });
+
 });
