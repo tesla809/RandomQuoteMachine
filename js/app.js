@@ -403,7 +403,7 @@ $(document).ready(function(){
     
 
     /*** User Interaction ***/
-    var spinner = "<i class='fa fa-cog fa-spin'></i>";
+    var spinner = "<i class='fa fa-cog fa-spin fa-2x'></i>";
 
     // add tweet button for first quote
     var beginQuote = $(".add-Quote").text();
@@ -420,7 +420,7 @@ $(document).ready(function(){
         endCycleBackToOrginalColor();
         hoverAudio.play();
 
-        $("h1").append(spinner);
+        $(".quote-space").append(spinner);
         
 
     }).mouseleave(function(){
@@ -430,7 +430,7 @@ $(document).ready(function(){
         backToOriginalColor();
         hoverAudio.pause();
 
-        $("i").remove(':first');
+        $("i").remove(':last');
     });
 
     $(".random-language").on("click", function(){
