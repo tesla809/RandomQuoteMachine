@@ -405,6 +405,13 @@ $(document).ready(function(){
     /*** User Interaction ***/
     var spinner = "<i class='fa fa-cog fa-spin'></i>";
 
+    // add tweet button for first quote
+    var beginQuote = $(".add-Quote").text();
+    var beginAuthor = $(".add-Author").text();
+
+    $(".add-Author").append(" <a href='http://twitter.com/home/?status="+tweetLengthManage(beginQuote,beginAuthor)+" via @tesla809'>"+tweetButton+"</a>");
+
+
     // changes random text every second.
     $(".random-language").mouseenter(function(){
         startCycle();
