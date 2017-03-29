@@ -205,6 +205,10 @@ $(document).ready(function(){
 
 
     var titleArray = toArray(randomTitle);
+
+    /* video */
+    // using vide.js? 
+
    
 
     /* loop code to get things working */
